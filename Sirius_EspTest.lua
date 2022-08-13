@@ -590,15 +590,15 @@ function espLibrary:Load(renderValue)
                 partPosition = self.getBoundingBox(object);
             end
 
-            local distance = (currentCamera.CFrame.Position - object.Position).Magnitude;
-            local screenPosition, onScreen = worldToViewportPoint(object.Position);
+            local distance = (currentCamera.CFrame.Position - partPosition).Magnitude;
+            local screenPosition, onScreen = worldToViewportPoint(partPosition);
             local canShow = cache.options.enabled and onScreen;
 
             if (self.options.limitDistance and distance > self.options.maxDistance) then
                 canShow = false;
             end
 
-            if (self.options.visibleOnly and not self.visibleCheck(object, object.Position)) then
+            if (self.options.visibleOnly and not self.visibleCheck(object, partPosition)) then
                 canShow = false;
             end
 
